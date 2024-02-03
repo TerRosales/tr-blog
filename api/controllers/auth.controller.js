@@ -2,7 +2,7 @@ import { request } from "express"
 import User from "../models/user.model.js"
 import bcryptjs from "bcryptjs";
 
-export const signup = async (req, res) => {
+export const signup = async (req, res, next) => {
     const { username, email, password } = req.body
 
     if (!username || !email || !password || username === '' || email === '' || password === '') 
@@ -22,7 +22,7 @@ export const signup = async (req, res) => {
             await newUser.save();
         res.json("Signup Successful")
         }catch (error) {
-            res.status(500).json({ message: error.message})
+            next(error);
         }
     }
 
