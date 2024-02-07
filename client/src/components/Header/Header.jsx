@@ -13,8 +13,8 @@ const Header = () => {
   return (
     <Navbar className='app__nav'>
       <Link to='/' className="app__logo">
-        TR&nbsp;
-        <span className='style-span'>&#123;</span>&nbsp;<span className='logo__span'> Hobbies: &infin;</span>&nbsp;
+        Pocket&nbsp;
+        <span className='style-span'>&#123;</span>&nbsp;<span className='logo__span'> Items: &infin;</span>&nbsp;
         <span className='style-span'>&#125;</span>
       </Link>
       <form>
@@ -32,7 +32,8 @@ const Header = () => {
           className='app__light-dark button-gradient'>
           <FaMoon/>
         </Button>
-        <Link>
+        <Link
+          to="/sign-in">
           <Button
             outline
             gradientDuoTone="greenToBlue">
@@ -50,7 +51,7 @@ const Header = () => {
         <Link to="/about">About</Link>
       </Navbar.Link>
       <Navbar.Link as={'div'} active={path === "/poppin"} >
-        <Link to="/poppin">What's Poppin</Link>
+        <Link to="/sign-up">What's Poppin</Link>
       </Navbar.Link>
       
     </Navbar.Collapse>
