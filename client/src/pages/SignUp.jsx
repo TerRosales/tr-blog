@@ -7,22 +7,34 @@ const SignUp = () => {
   const handleChange = (e) => {
     setFormData({...formData, [e.target.id]: e.target.value});
   }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch('api/auth/sign-up',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+      const data = await res.json()
+    } catch (error) {}
+  }
   console.log(formData);
   return (
    <div className="min-h-screen mt-20">
     <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center">
       {/* left */}
-    <div className="flex-1">
+    <div className="flex-1 mx-3">
         <Link to='/' className="text-[30px] font-bold dark:text-white">
           Pocket&nbsp;
           <span className='text-teal-500 text-[30px]'>&#123;</span>&nbsp;<span className='px-2 py-1 text-[32px] rounded-lg text-white font-bold bg-gradient-to-b from-slate-900 to-teal-700 '> Items: &infin;</span>&nbsp;
           <span className='text-teal-500 text-[30px]'>&#125;</span>
         </Link>
-        <p className='mt-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores optio deleniti possimus voluptatum? Ipsa itaque tempore ut quis, laboriosam.</p>
+        <p className='my-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores optio deleniti possimus voluptatum? Ipsa itaque tempore ut quis, laboriosam.</p>
     </div>
     {/* right */}
-    <div className="flex-1">
-      <form className='flex flex-col gap-5'>
+    <div className="flex-1 mx-3">
+      <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
         <div>
           <Label value='Username'/>
           <TextInput 
