@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const SignUp = () => {
   const [formData, setFormData] = useState();
   const [errorMessage, setErrorMessage] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);  
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -20,6 +21,7 @@ const SignUp = () => {
     try {
       setLoading(true);
       setErrorMessage(null);
+      setSuccessMessage(null); 
       const res = await fetch("api/auth/sign-up", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -29,6 +31,7 @@ const SignUp = () => {
       if (data.success === false) {
         return setErrorMessage(data.message);
       }
+      setSuccessMessage(`Sign in successfully`);
       setLoading(false);
     } catch (error) {
       setErrorMessage(error.message);
@@ -59,6 +62,11 @@ const SignUp = () => {
         </div>
         {/* right */}
         <div className="flex-1 mx-3">
+          {successMessage && (
+            <Alert className="mt-5" color="success">
+              {successMessage}
+            </Alert>
+          )}
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <div>
               <Label value="Username" />
