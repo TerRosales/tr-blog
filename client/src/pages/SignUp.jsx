@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-  const [formData, setFormData] = useState();
+  const [formData, setFormData] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
-  const [successMessage, setSuccessMessage] = useState(null);  
+  const [successMessage, setSuccessMessage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
@@ -21,7 +22,7 @@ const SignUp = () => {
     try {
       setLoading(true);
       setErrorMessage(null);
-      setSuccessMessage(null); 
+      setSuccessMessage(null);
       const res = await fetch("api/auth/sign-up", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -31,8 +32,13 @@ const SignUp = () => {
       if (data.success === false) {
         return setErrorMessage(data.message);
       }
-      setSuccessMessage(`Sign in successfully`);
+      setSuccessMessage(`Sign in successfully, Redirecting`);
       setLoading(false);
+      if (res.ok) {
+        setTimeout(() => {
+          navigate("/sign-in");
+        }, 1500);
+      }
     } catch (error) {
       setErrorMessage(error.message);
       setLoading(false);
@@ -98,7 +104,7 @@ const SignUp = () => {
             <Button
               gradientMonochrome="failure"
               outline
-              type="subit"
+              type="submit"
               disabled={loading}
             >
               {loading ? (
