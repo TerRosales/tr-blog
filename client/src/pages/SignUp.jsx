@@ -32,7 +32,7 @@ const SignUp = () => {
       if (data.success === false) {
         return setErrorMessage(data.message);
       }
-      setSuccessMessage(`Sign in successfully, Redirecting`);
+      setSuccessMessage(`Sign in successfully, Redirecting...`);
       setLoading(false);
       if (res.ok) {
         setTimeout(() => {
@@ -102,7 +102,7 @@ const SignUp = () => {
               />
             </div>
             <Button
-              gradientMonochrome="failure"
+              gradientDuoTone="greenToBlue"
               outline
               type="submit"
               disabled={loading}
