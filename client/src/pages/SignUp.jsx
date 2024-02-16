@@ -23,7 +23,7 @@ const SignUp = () => {
       setLoading(true);
       setErrorMessage(null);
       setSuccessMessage(null);
-      const res = await fetch("api/auth/sign-up", {
+      const res = await fetch("api/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -36,7 +36,7 @@ const SignUp = () => {
       setLoading(false);
       if (res.ok) {
         setTimeout(() => {
-          navigate("/sign-in");
+          navigate("/signin");
         }, 1500);
       }
     } catch (error) {

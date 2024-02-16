@@ -1,29 +1,65 @@
-import { request } from "express"
-import User from "../models/user.model.js"
+import { request } from "express";
+import User from "../models/user.model.js";
 import bcryptjs from "bcryptjs";
 import { errorHandler } from "../utils/error.js";
+import jwt from "jsonwebtoken";
 
 export const signup = async (req, res, next) => {
-    const { username, email, password } = req.body
+  const { username, email, password } = req.body;
 
-    if (!username || !email || !password || username === '' || email === '' || password === '') 
-    {
-        next(errorHandler(400, "All fields are required")) // prevents user from submitting empty fields
+  if (
+    !username ||
+    !email ||
+    !password ||
+    username === "" ||
+    email === "" ||
+    password === ""
+  ) {
+    next(errorHandler(400, "All fields are required")); // prevents user from submitting empty fields
+  }
+
+  const hashedPassword = bcryptjs.hashSync(password, 10);
+
+  const newUser = new User({
+    username,
+    email,
+    password: hashedPassword,
+  });
+  // Error Handling to make sure we have a unique username
+  try {
+    await newUser.save();
+    res.json("Signup Successful");
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const signin = async (req, res, next) => {
+  const { email, password } = req.body;
+
+  if (!email || !password || email === "" || password === "") {
+    next(errorHandler(400, "All fields are required"));
+  }
+
+  try {
+    const validUser = await User.findOne({ email });
+    if (!validUser) {
+      next(errorHandler(400, "User not found"));
     }
-
-        const hashedPassword = bcryptjs.hashSync(password, 10)
-
-        const newUser = new User({
-            username,
-            email,
-            password: hashedPassword,
-        })
-        // Error Handling to make sure we have a unique username
-        try {
-            await newUser.save();
-        res.json("Signup Successful")
-        }catch (error) {
-            next(error);
-        }
+    const validPassword = bcryptjs.compareSync(password, validUser.password);
+    if (!validPassword) {
+      return next(errorHandler(400, "Invalid password"));
     }
+    const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
 
+    const { password: pass, ...rest } = validUser._doc;
+    res
+      .status(200)
+      .cookie("access_token", token, {
+        httpOnly: true,
+      })
+      .json(rest);
+  } catch (error) {
+    next(error);
+  }
+};

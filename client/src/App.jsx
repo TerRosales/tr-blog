@@ -21,8 +21,8 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
 
         <Route path="/projects" element={<Projects />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
       <FooterComp />
     </BrowserRouter>
