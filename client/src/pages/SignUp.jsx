@@ -55,7 +55,7 @@ const SignUp = () => {
             <span className="text-teal-500 text-[30px]">&#123;</span>&nbsp;
             <span className="px-2 py-1 text-[32px] rounded-lg text-white font-bold bg-gradient-to-b from-slate-900 to-teal-700 ">
               {" "}
-              Items: &infin;
+              thought:
             </span>
             &nbsp;
             <span className="text-teal-500 text-[30px]">&#125;</span>

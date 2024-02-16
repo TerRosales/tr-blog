@@ -1,12 +1,13 @@
 import React from "react";
 import Logo from "./Logo";
 import { Footer } from "flowbite-react";
+import { BsFacebook, BsLinkedin, BsGithub, BsTwitterX } from 'react-icons/bs'
 
 const FooterComp = () => {
   return (
     <Footer container className="border boder-t-8 border-teal-500">
       <div className="w-full max-w-7xl mx-auto">
-        <div className="grid w-full justifu-between sm:flex md:grid-cols-1">
+        <div className="grid w-full justify  -between sm:flex md:grid-cols-1">
           <div className="mt-5">
             <Logo />
           </div>
@@ -50,6 +51,17 @@ const FooterComp = () => {
                 </Footer.Link>
               </Footer.LinkGroup>
             </div>
+          </div>
+        </div>
+        <Footer.Divider />
+        <div className="w-full sm:flex sm:item-center sm:justify-between">
+          <Footer.Copyright href="#" by="Terrence Rosales" year={new Date().getFullYear()} 
+          />
+          <div className="flex gap-6 sm:mt-0 mt-4 sm:justify-center">
+            <Footer.Icon href="#" icon={BsFacebook} />
+            <Footer.Icon href="#" icon={BsGithub} />
+            <Footer.Icon href="#" icon={BsLinkedin} />
+            <Footer.Icon href="#" icon={BsTwitterX} />
           </div>
         </div>
       </div>
