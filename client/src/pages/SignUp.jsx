@@ -32,7 +32,7 @@ const SignUp = () => {
       if (data.success === false) {
         return setErrorMessage(data.message);
       }
-      setSuccessMessage(`Sign in successfully, Redirecting...`);
+      setSuccessMessage(`Sign Up successfully, Redirecting...`);
       setLoading(false);
       if (res.ok) {
         setTimeout(() => {
