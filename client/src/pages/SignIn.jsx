@@ -15,7 +15,7 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.username || !formData.email || !formData.password) {
+    if (!formData.email || !formData.password) {
       return setErrorMessage("Please fill out all fields");
     }
 
@@ -32,11 +32,11 @@ const SignIn = () => {
       if (data.success === false) {
         return setErrorMessage(data.message);
       }
-      setSuccessMessage(`Sign Up successfully, Redirecting...`);
+      setSuccessMessage(`Signing in...`);
       setLoading(false);
       if (res.ok) {
         setTimeout(() => {
-          navigate("/signin");
+          navigate("/");
         }, 1500);
       }
     } catch (error) {
@@ -78,7 +78,7 @@ const SignIn = () => {
               <Label value="Email" />
               <TextInput
                 type="email"
-                placeholder="Enter valid email address"
+                placeholder="Enter your email"
                 id="email"
                 onChange={handleChange}
               />

@@ -78,7 +78,7 @@ const SignUp = () => {
               <Label value="Username" />
               <TextInput
                 type="text"
-                placeholder="Enter valid username"
+                placeholder="Enter a valid username"
                 id="username"
                 onChange={handleChange}
               />
@@ -87,7 +87,7 @@ const SignUp = () => {
               <Label value="Email" />
               <TextInput
                 type="email"
-                placeholder="Enter valid email address"
+                placeholder="Enter a valid email"
                 id="email"
                 onChange={handleChange}
               />
@@ -96,7 +96,7 @@ const SignUp = () => {
               <Label value="Password" />
               <TextInput
                 type="password"
-                placeholder="Enter valid password"
+                placeholder="Enter a valid password"
                 id="password"
                 onChange={handleChange}
               />
