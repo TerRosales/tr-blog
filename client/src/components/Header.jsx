@@ -26,7 +26,7 @@ const Header = () => {
         <Button className="w-12 h-10 hidden sm:inline button-gradient">
           <FaMoon />
         </Button>
-        <Link to="/sign-in">
+        <Link to="/signin">
           <Button outline gradientDuoTone="greenToBlue">
             Sign In
           </Button>
@@ -41,7 +41,7 @@ const Header = () => {
           <Link to="/about">About</Link>
         </Navbar.Link>
         <Navbar.Link as={"div"} active={path === "/poppin"}>
-          <Link to="/sign-up">What's Poppin</Link>
+          <Link to="/signin">What&rsquo;s Poppin</Link>
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
