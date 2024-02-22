@@ -5,8 +5,7 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  // eslint-disable-next-line no-undef
-  apiKey: process.env.VITE_FIREBASE_API_KEY,
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "tr-blog-11ae8.firebaseapp.com",
   projectId: "tr-blog-11ae8",
   storageBucket: "tr-blog-11ae8.appspot.com",
