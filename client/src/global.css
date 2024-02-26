@@ -11,5 +11,5 @@
 }
 
 .button-gradient {
-  @apply bg-gradient-to-tr from-black to-teal-950 mx-2;
+  @apply text-white bg-gradient-to-b from-slate-900 to-teal-700 mx-2;
 }

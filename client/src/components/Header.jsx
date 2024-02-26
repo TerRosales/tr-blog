@@ -24,10 +24,10 @@ const Header = () => {
           rightIcon={AiOutlineSearch}
         />
       </form>
-      <Button className="button-gradient">
+      <Button className="button-gradient w-12 h-10 lg:hidden pill">
         <AiOutlineSearch />
       </Button>
-      <div className="flex">
+      <div className="flex gap-2 md:order-2">
         <Button
           className="w-12 h-10 hidden sm:inline button-gradient"
           pill
