@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 import { useSelector } from "react-redux";
-import { TextInput, Button } from "flowbite-react";
+import { TextInput, Button, Alert } from "flowbite-react";
 import { FaCamera } from "react-icons/fa";
 import {
   getDownloadURL,
@@ -14,11 +16,10 @@ const DashProfile = () => {
   const { currentUser } = useSelector((state) => state.user);
   const [imageFile, setImageFile] = useState(null);
   const [imageFileUrl, setImageFileUrl] = useState(null);
-  const [imageFileUplaodProgress, setImageFileUplaodProgress] = useState(null);
+  const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
   const [imageFileUploadError, setImageFileUploadError] = useState(null);
   const filePickerRef = useRef();
   const [isHovered, setIsHovered] = useState(false);
-  console.log(imageFileUplaodProgress, imageFileUploadError);
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -32,7 +33,6 @@ const DashProfile = () => {
     }
   }, [imageFile]);
   const uploadImage = async () => {
-    console.log("uploading image...");
     //firebase storage rules
     // service firebase.storage {
     //   match /b/{bucket}/o {
@@ -43,6 +43,7 @@ const DashProfile = () => {
     //     }
     //   }
     // }
+    setImageFileUploadError(null);
     const storage = getStorage(app);
     const fileName = new Date().getTime() + imageFile.name;
     const storageRef = ref(storage, fileName);
@@ -52,12 +53,15 @@ const DashProfile = () => {
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        setImageFileUplaodProgress(progress.toFixed(0));
+        setImageFileUploadProgress(progress.toFixed(0));
       },
       (error) => {
         setImageFileUploadError(
           "Could not upload image (file must be less than 2MB)"
         );
+        setImageFileUploadProgress(null);
+        setImageFile(url);
+        setImageFileUrl(null);
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
@@ -82,25 +86,51 @@ const DashProfile = () => {
           />
           {isHovered && (
             <>
-              <span className="cursor-pointer absolute z-10 mt-16 inset-0 flex flex-col  items-center justify-center text-white font-semibold opacity-[0.7]">
+              <span className="cursor-pointer absolute z-10 mt-16 inset-0 flex flex-col  items-center justify-center text-gray-500 font-semibold opacity-[0.7]">
                 Upload Profile Picture
               </span>
-              <FaCamera className="cursor-pointer absolute mt-20 w-12 h-12 justify-center items-center text-white opacity-[0.7] left-1/2 -translate-x-1/2" />
+              <FaCamera className="cursor-pointer absolute mt-20 w-12 h-12 justify-center items-center text-gray-500 opacity-[0.7] left-1/2 -translate-x-1/2" />
             </>
           )}
         </div>
         <div
-          className="w-32 h-32 self-center cursor-pointer shadow-md everflow-hidden rounded-full hover:bg-white"
+          className="relative w-32 h-32 self-center cursor-pointer shadow-md everflow-hidden rounded-full hover:bg-white"
           onClick={() => filePickerRef.current.click()}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
+          {imageFileUploadProgress && (
+            <CircularProgressbar
+              value={imageFileUploadProgress || 0}
+              text={`${imageFileUploadProgress}%`}
+              strokeWidth={5}
+              styles={{
+                root: {
+                  width: "100%",
+                  height: "100%",
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                },
+                path: {
+                  stroke: `rgba(3,21,17, ${imageFileUploadProgress / 100})`,
+                },
+              }}
+            />
+          )}
           <img
             src={imageFileUrl || currentUser.profilePicture}
             alt="user"
-            className="rounded-full w-full h-full object-cover border-8 border-[#1f2939]"
+            className={`rounded-full w-full h-full object-cover border-8 border-[#1f2939] ${
+              imageFileUploadProgress &&
+              imageFileUploadProgress < 100 &&
+              "opacity-60"
+            }`}
           />
         </div>
+        {imageFileUploadError && (
+          <Alert color="failure">{imageFileUploadError}</Alert>
+        )}
         <TextInput
           type="text"
           id="username"
