@@ -4,6 +4,7 @@ import userRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
 // use for hiding DB info
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 // Database Setup
@@ -20,7 +21,7 @@ mongoose
 const app = express();
 
 app.use(express.json()); //this is telling Express to use the express.json() middleware for all incoming requests, enabling automatic parsing of JSON request bodies.
-
+app.use(cookieParser());
 app.listen(3000, () => {
   console.log("Server is running at Port: 3000");
 });
