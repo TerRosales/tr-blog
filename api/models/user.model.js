@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema(
     profilePicture: {
       type: String,
       default:
-        "https://www.google.com/url?sa=i&url=https%3A%2F%2Fpixabay.com%2Fvectors%2Fblank-profile-picture-mystery-man-973460%2F&psig=AOvVaw13s7ExQPafSwflOi7Vb4yj&ust=1708701355969000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCKDEieCev4QDFQAAAAAdAAAAABAE",
+        "https://media.istockphoto.com/id/1495088043/vector/user-profile-icon-avatar-or-person-icon-profile-picture-portrait-symbol-default-portrait.jpg?s=612x612&w=0&k=20&c=dhV2p1JwmloBTOaGAtaA3AW1KSnjsdMt7-U_3EZElZ0=",
     },
   },
   { timestamps: true }

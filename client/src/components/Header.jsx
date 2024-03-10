@@ -57,7 +57,7 @@ const Header = () => {
               <Dropdown.Item>Profile</Dropdown.Item>
             </Link>
             <Dropdown.Divider />
-            <Dropdown.Item>Signout</Dropdown.Item>
+            <Dropdown.Item>Sign Out</Dropdown.Item>
           </Dropdown>
         ) : (
           <Link to="/signin">
