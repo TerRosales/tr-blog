@@ -19,16 +19,18 @@ import {
 import { useDispatch } from "react-redux";
 
 const DashProfile = () => {
-  const { currentUser } = useSelector((state) => state.user);
+  const { currentUser, error, loading } = useSelector((state) => state.user);
   const [formData, setFormData] = useState({});
   const [imageFile, setImageFile] = useState(null);
   const [imageFileUrl, setImageFileUrl] = useState(null);
+  const [updateUserSuccess, setUpdateUserSuccess] = useState(null);
+  const [updateUserError, setUpdateUserError] = useState(null);
   const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
   const [imageFileUploadError, setImageFileUploadError] = useState(null);
+  const [imageFileUploading, setimageFileUploading] = useState(false);
   const dispatch = useDispatch();
   const filePickerRef = useRef();
   const [isHovered, setIsHovered] = useState(false);
-  console.log(currentUser._id);
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -52,6 +54,7 @@ const DashProfile = () => {
     //     }
     //   }
     // }
+    setimageFileUploading(true);
     setImageFileUploadError(null);
     const storage = getStorage(app);
     const fileName = new Date().getTime() + imageFile.name;
@@ -69,11 +72,13 @@ const DashProfile = () => {
         setImageFileUploadProgress(null);
         setImageFile(null);
         setImageFileUrl(null);
+        setimageFileUploading(false);
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
           setImageFileUrl(downloadUrl);
           setFormData({ ...formData, profilePicture: downloadUrl });
+          setimageFileUploading(false);
         });
       }
     );
@@ -84,12 +89,18 @@ const DashProfile = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setUpdateUserError(null);
+    setUpdateUserSuccess(null);
     if (Object.keys(formData).length === 0) {
+      setUpdateUserError("No changes made");
+      return;
+    }
+    if (imageFileUploading) {
+      setUpdateUserError("Please wait for the upload to finish");
       return;
     }
     try {
       dispatch(updateStart());
-
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
         method: "PUT",
         headers: {
@@ -100,11 +111,14 @@ const DashProfile = () => {
       const data = await res.json();
       if (!res.ok) {
         dispatch(updateFailure(data.message));
+        setUpdateUserError(data.message);
       } else {
         dispatch(updateSuccess(data));
+        setUpdateUserSuccess("Profile has been successfully updated");
       }
     } catch (error) {
       dispatch(updateFailure(error.message));
+      setUpdateUserError(error.message);
     }
   };
   return (
@@ -167,6 +181,16 @@ const DashProfile = () => {
         </div>
         {imageFileUploadError && (
           <Alert color="failure">{imageFileUploadError}</Alert>
+        )}
+        {updateUserSuccess && (
+          <Alert color="success" className="mt-5">
+            {updateUserSuccess}
+          </Alert>
+        )}
+        {updateUserError && (
+          <Alert color="failure" className="mt-5">
+            {updateUserError}
+          </Alert>
         )}
         <TextInput
           type="text"
