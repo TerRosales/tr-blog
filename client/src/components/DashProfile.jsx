@@ -18,6 +18,7 @@ import {
   deleteUserStart,
   deleteUserFailure,
   deleteUserSuccess,
+  signoutSuccess,
 } from "../redux/user/userSlice.js";
 import { useDispatch } from "react-redux";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
@@ -80,9 +81,9 @@ const DashProfile = () => {
         setimageFileUploading(false);
       },
       () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
-          setImageFileUrl(downloadUrl);
-          setFormData({ ...formData, profilePicture: downloadUrl });
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setImageFileUrl(downloadURL);
+          setFormData({ ...formData, profilePicture: downloadURL });
           setimageFileUploading(false);
         });
       }
@@ -141,6 +142,20 @@ const DashProfile = () => {
       }
     } catch (error) {
       dispatch(deleteUserFailure(error.message));
+    }
+  };
+
+  const handleSignout = async () => {
+    try {
+      const res = await fetch("/api/user/signout", { method: "POST" });
+      const data = await res.json();
+      if (!res.ok) {
+        console.log(data.message);
+      } else {
+        dispatch(signoutSuccess());
+      }
+    } catch (error) {
+      console.log(error.message);
     }
   };
   return (
@@ -247,7 +262,9 @@ const DashProfile = () => {
         <span onClick={() => setShowModal(true)} className="cursor-pointer">
           Delete Account
         </span>
-        <span className="cursor-pointer">Sign Out</span>
+        <span onClick={handleSignout} className="cursor-pointer">
+          Sign Out
+        </span>
       </div>
       <Modal
         show={showModal}
