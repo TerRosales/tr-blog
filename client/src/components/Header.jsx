@@ -41,15 +41,6 @@ const Header = () => {
         <AiOutlineSearch />
       </Button>
       <div className="flex gap-2 md:order-2">
-        <Button
-          className="w-12 h-10 hidden sm:inline button-gradient"
-          pill
-          onClick={() => {
-            dispatch(toggleTheme());
-          }}
-        >
-          {theme === "light" ? <FaSun /> : <FaMoon />}
-        </Button>
         {currentUser ? (
           <Dropdown
             arrowIcon={false}
@@ -82,6 +73,15 @@ const Header = () => {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
+        <Button
+          className="w-12 h-10 button-gradient"
+          pill
+          onClick={() => {
+            dispatch(toggleTheme());
+          }}
+        >
+          {theme === "light" ? <FaSun /> : <FaMoon />}
+        </Button>
         <Navbar.Link as={"div"} active={path === "/"}>
           <Link to="/">Home</Link>
         </Navbar.Link>

@@ -22,6 +22,7 @@ import {
 } from "../redux/user/userSlice.js";
 import { useDispatch } from "react-redux";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 const DashProfile = () => {
   const { currentUser, error, loading } = useSelector((state) => state.user);
@@ -236,9 +237,25 @@ const DashProfile = () => {
           onChange={handleChange}
           placeholder="Password"
         />
-        <Button type="submit" gradientDuoTone="greenToBlue" outline>
+        <Button
+          type="submit"
+          gradientDuoTone="greenToBlue"
+          outline
+          disabled={loading || imageFileUploading}
+        >
           Update
         </Button>
+        {currentUser.isAdmin && (
+          <Link to={"/create-post"}>
+            <Button
+              type="button"
+              gradientDuoTone="purpleToPink"
+              className="w-full"
+            >
+              Create a post
+            </Button>
+          </Link>
+        )}
       </form>
       {imageFileUploadError && (
         <Alert color="failure">{imageFileUploadError}</Alert>

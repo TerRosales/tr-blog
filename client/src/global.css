@@ -13,3 +13,11 @@
 .button-gradient {
   @apply text-white bg-gradient-to-b from-slate-900 to-teal-700 mx-2;
 }
+
+body {
+  height: 100vh;
+}
+
+.ql-editor {
+  font-size: 1.05rem;
+}
