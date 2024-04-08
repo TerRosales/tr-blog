@@ -37,7 +37,7 @@ const Header = () => {
           rightIcon={AiOutlineSearch}
         />
       </form>
-      <Button className="button-gradient w-12 h-10 lg:hidden pill">
+      <Button className="button-gradient w-12 h-10 pill lg:inline">
         <AiOutlineSearch />
       </Button>
       <div className="flex gap-2 md:order-2">
