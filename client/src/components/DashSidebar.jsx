@@ -1,12 +1,16 @@
 import React from "react";
 import { Sidebar } from "flowbite-react";
-import { HiUser, HiArrowSmRight } from "react-icons/hi";
+import { HiUser, HiArrowSmRight, HiDocumentText } from "react-icons/hi";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, Link } from "react-router-dom";
 import { signoutSuccess } from "../redux/user/userSlice.js";
+import { current } from "@reduxjs/toolkit";
 
 const DashSidebar = () => {
+  const userState = useSelector((state) => state.user);
+  const currentUser = userState.currentUser;
+  const isAdmin = currentUser && currentUser.isAdmin;
   const location = useLocation();
   const dispatch = useDispatch();
   const [tab, setTab] = useState("");
@@ -34,16 +38,28 @@ const DashSidebar = () => {
     <Sidebar className="w-full md:w-56">
       <Sidebar.Items>
         <Sidebar.ItemGroup>
-          <Link to="/dashboard?tab=profile" />
-          <Sidebar.Item
-            active={tab === "profile"}
-            icon={HiUser}
-            label={"User"}
-            labelColor="dark"
-            as="div"
-          >
-            Profile
-          </Sidebar.Item>
+          <Link to="/dashboard?tab=profile">
+            <Sidebar.Item
+              active={tab === "profile"}
+              icon={HiUser}
+              label={isAdmin ? "Admin" : "User"}
+              labelColor={isAdmin ? "purple" : "dark"}
+              as="div"
+            >
+              Profile
+            </Sidebar.Item>
+          </Link>
+          {currentUser.isAdmin && (
+            <Link to="/dashboard?tab=posts">
+              <Sidebar.Item
+                active={tab === "posts"}
+                icon={HiDocumentText}
+                as="div"
+              >
+                Posts
+              </Sidebar.Item>
+            </Link>
+          )}
           <Sidebar.Item
             onClick={handleSignout}
             icon={HiArrowSmRight}
