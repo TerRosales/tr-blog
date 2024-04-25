@@ -60,6 +60,9 @@ const Header = () => {
             <Link to="/dashboard?tab=profile">
               <Dropdown.Item>Profile</Dropdown.Item>
             </Link>
+            <Link to="/dashboard?tab=posts">
+              <Dropdown.Item>Posts</Dropdown.Item>
+            </Link>
             <Dropdown.Divider />
             <Dropdown.Item onClick={handleSignout}>Sign Out</Dropdown.Item>
           </Dropdown>
