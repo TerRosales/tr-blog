@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Table } from "flowbite-react";
+import { Table, Modal, Button } from "flowbite-react";
 import { Link } from "react-router-dom";
+import { HiOutlineExclamationCircle } from "react-icons/hi";
 
 const DashPosts = () => {
   const { currentUser } = useSelector((state) => state.user);
   const [userPosts, setUserPosts] = useState([]);
   const [showMore, setShowMore] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [postIdToDelete, setPostIdToDelete] = useState("");
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -48,13 +51,36 @@ const DashPosts = () => {
       console.log(error.message);
     }
   };
+
+  const handleDeletePost = async () => {
+    setShowModal(false);
+    try {
+      const res = await fetch(
+        `/api/post/deletepost/${postIdToDelete}/${currentUser._id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      const data = await res.json();
+      if (!res.ok) {
+        console.log(data.message);
+      } else {
+        setUserPosts((prev) =>
+          prev.filter((post) => post._id !== postIdToDelete)
+        );
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-teal-950 scrollbar-thumb-teal-950 dark:scrollbar-track-teal-900 dark:scrollbar-thumb-teal-950">
       {currentUser.isAdmin && userPosts.length > 0 ? (
         <>
           <Table
             hoverable
-            className="text-black hover:text-white sshadow-md bg-white dark:border-teal-950 dark:bg-gradient-to-bl from-teal-900 to-black"
+            className="text-black hover:text-white shadow-md bg-white dark:border-teal-950 dark:bg-gradient-to-bl from-teal-900 to-black"
           >
             <Table.Head>
               <Table.HeadCell>Date Updated</Table.HeadCell>
@@ -68,7 +94,7 @@ const DashPosts = () => {
             </Table.Head>
             {userPosts.map((post) => (
               <Table.Body key={post._id} className="divide-y">
-                <Table.Row className="bg-white dark:border-teal-200 dark:bg-gradient-to-bl to-black hfrom-teal-900">
+                <Table.Row className="bg-white dark:border-teal-200 dark:bg-gradient-to-bl to-black from-teal-900">
                   <Table.Cell>
                     {new Date(post.updatedAt).toLocaleDateString()}
                   </Table.Cell>
@@ -89,15 +115,21 @@ const DashPosts = () => {
                       {post.title}
                     </Link>
                   </Table.Cell>
-                  <Table.Cell>{post.catergory}</Table.Cell>
+                  <Table.Cell>{post.category}</Table.Cell>
                   <Table.Cell>
-                    <span className="text-red-600 hover:underline hover:font-semibold">
+                    <span
+                      onClick={() => {
+                        setShowModal(true);
+                        setPostIdToDelete(post._id);
+                      }}
+                      className="text-red-600 hover:underline hover:font-semibold"
+                    >
                       Delete
                     </span>
                   </Table.Cell>
                   <Table.Cell>
                     <Link
-                      className="text-blue-400 hover:underline hover:font-semibold"
+                      className="text-green-500 hover:underline hover:font-semibold"
                       to={`/update-post/${post._id}`}
                     >
                       Edit
@@ -119,6 +151,35 @@ const DashPosts = () => {
       ) : (
         <p>You currently have no posts</p>
       )}
+      <Modal
+        show={showModal}
+        onClose={() => {
+          setShowModal(false);
+        }}
+        popup
+        size="md"
+      >
+        <Modal.Header />
+        <Modal.Body>
+          <div>
+            <HiOutlineExclamationCircle
+              color="red"
+              className="h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto"
+            />
+            <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400 text-center">
+              Please confirm post deletion?
+            </h3>
+            <div className="flex justify-center gap-4">
+              <Button color="failure" onClick={handleDeletePost}>
+                Confirm deletion
+              </Button>
+              <Button color="gray" onClick={() => setShowModal(false)}>
+                Cancel
+              </Button>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };
