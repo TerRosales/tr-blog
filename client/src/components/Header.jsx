@@ -27,7 +27,7 @@ const Header = () => {
     }
   };
   return (
-    <Navbar className="border-b-2 p-0 m-0 h-22">
+    <Navbar className="border-b-2 h-22">
       <Logo />
       <form>
         <TextInput
@@ -85,13 +85,13 @@ const Header = () => {
         >
           {theme === "light" ? <FaSun /> : <FaMoon />}
         </Button>
-        <Navbar.Link as={"div"} active={path === "/"}>
+        <Navbar.Link className="lg:p-4" as={"div"} active={path === "/"}>
           <Link to="/">Home</Link>
         </Navbar.Link>
-        <Navbar.Link as={"div"} active={path === "/about"}>
+        <Navbar.Link className="lg:p-4" as={"div"} active={path === "/about"}>
           <Link to="/about">Technology</Link>
         </Navbar.Link>
-        <Navbar.Link as={"div"} active={path === "/poppin"}>
+        <Navbar.Link className="lg:p-4" as={"div"} active={path === "/poppin"}>
           <Link to="/news">Hobbies</Link>
         </Navbar.Link>
       </Navbar.Collapse>
