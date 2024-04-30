@@ -23,7 +23,7 @@ const CallToAction = () => {
         </Button>
       </div>
       <div>
-        <img className="p-7 flex-1" src={images.CTO} alt="test img" />
+        <img className="p-7 flex-1" src={images.CTA} alt="test img" />
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import testImg2 from "./assets/testImg-2.png";
 
 const images = {
   logo: tLogo,
-  CTO: testImg2,
+  CTA: testImg2,
   homeCover: testImg1,
 };
 
