@@ -249,7 +249,8 @@ const DashProfile = () => {
           <Link to={"/create-post"}>
             <Button
               type="button"
-              gradientDuoTone="purpleToPink"
+              outline
+              gradientDuoTone="cyanToBlue"
               className="w-full"
             >
               Create a post
