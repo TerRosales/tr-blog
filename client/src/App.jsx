@@ -5,11 +5,11 @@ import "./global.css";
 import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
-import Projects from "./pages/Projects";
+import Goals from "./pages/Goals";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Header from "./components/Header";
-
+import Hobbies from "./pages/Hobbies";
 import FooterComp from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
 import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute";
@@ -35,7 +35,8 @@ function App() {
           <Route path="/create-post" element={<CreatePost />} />
           <Route path="/update-post/:postId" element={<UpdatePost />} />
         </Route>
-        <Route path="/projects" element={<Projects />} />
+        <Route path="/hobbies" element={<Hobbies />} />
+        <Route path="/goals" element={<Goals />} />
         <Route path="/post/:postSlug" element={<PostPage />} />
       </Routes>
       <FooterComp />

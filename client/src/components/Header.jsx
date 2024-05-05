@@ -88,11 +88,11 @@ const Header = () => {
         <Navbar.Link className="lg:p-4" as={"div"} active={path === "/"}>
           <Link to="/">Home</Link>
         </Navbar.Link>
-        <Navbar.Link className="lg:p-4" as={"div"} active={path === "/about"}>
-          <Link to="/about">Technology</Link>
+        <Navbar.Link className="lg:p-4" as={"div"} active={path === "/goals"}>
+          <Link to="/goals">Goals</Link>
         </Navbar.Link>
-        <Navbar.Link className="lg:p-4" as={"div"} active={path === "/poppin"}>
-          <Link to="/news">Hobbies</Link>
+        <Navbar.Link className="lg:p-4" as={"div"} active={path === "/hobbies"}>
+          <Link to="/hobbies">Hobbies</Link>
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
