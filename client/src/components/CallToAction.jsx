@@ -11,7 +11,11 @@ const CallToAction = () => {
         <p className="text-black dark:text-gray-300 my-3">
           Collaboration creates communities
         </p>
-        <Button gradientDuoTone="cyanToBlue" outline className="font-thin mt-3">
+        <Button
+          gradientDuoTone="cyanToBlue"
+          outline
+          className="font-thin mt-0 mb-3"
+        >
           <a
             href="/dashboard?tab=posts"
             target="_blank"

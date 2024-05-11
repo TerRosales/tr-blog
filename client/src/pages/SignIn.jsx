@@ -8,6 +8,7 @@ import userSlice, {
   signInSuccess,
 } from "../redux/user/userSlice";
 import OAuth from "../components/OAuth";
+import images from "../images.js";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({});
@@ -55,17 +56,14 @@ const SignIn = () => {
       <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center">
         {/* left */}
         <div className="flex-1 mx-3">
-          <Link to="/" className="text-[24px] font-bold dark:text-white">
-            Pocket&nbsp;
-            <span className="text-teal-500 text-[24px]">&#123;</span>&nbsp;
-            <span className="px-2 py-1 text-[25px] rounded-lg text-white font-bold bg-gradient-to-b from-slate-900 to-teal-700 ">
-              {" "}
-              thought:
-            </span>
-            &nbsp;
-            <span className="text-teal-500 text-[30px]">&#125;</span>
-          </Link>
-          <p className="my-3">
+          <div className="flex">
+            <img
+              src={images.trBlogLogo}
+              alt="logo"
+              className="w-[140px] h-[150px] mx-auto"
+            />
+          </div>
+          <p className="my-3 mx-1">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
             optio deleniti possimus voluptatum? Ipsa itaque tempore ut quis,
             laboriosam.

@@ -51,3 +51,7 @@ body {
 .dark .post-content a {
   color: red;
 }
+
+.active {
+  @apply rounded-xl bg-opacity-20 bg-gradient-to-b from-slate-700 to-teal-700 text-[20px] transition-all font-bold text-white -translate-y-0.5 !important;
+}
