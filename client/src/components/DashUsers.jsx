@@ -74,7 +74,7 @@ const DashPosts = () => {
         <>
           <Table
             hoverable
-            className="text-black hover:text-white shadow-md bg-white dark:border-teal-950 dark:bg-gradient-to-bl from-teal-900 to-black"
+            className="text-black shadow-md bg-white dark:border-teal-950 dark:bg-gradient-to-bl from-teal-900 to-black"
           >
             <Table.Head>
               <Table.HeadCell>Date Created</Table.HeadCell>
@@ -86,7 +86,7 @@ const DashPosts = () => {
             </Table.Head>
             {users.map((user) => (
               <Table.Body key={user._id} className="divide-y">
-                <Table.Row className="bg-white dark:border-teal-200 dark:bg-gradient-to-bl to-black from-teal-900">
+                <Table.Row className="bg-white dark:border-teal-400 dark:bg-gradient-to-bl to-black from-teal-900">
                   <Table.Cell>
                     {new Date(user.createdAt).toLocaleDateString()}
                   </Table.Cell>

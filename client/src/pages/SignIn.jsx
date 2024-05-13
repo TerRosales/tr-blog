@@ -9,6 +9,7 @@ import userSlice, {
 } from "../redux/user/userSlice";
 import OAuth from "../components/OAuth";
 import images from "../images.js";
+import CallToAction from "../components/CallToAction.jsx";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({});
@@ -52,15 +53,15 @@ const SignIn = () => {
   };
   console.log(formData);
   return (
-    <div className="min-h-screen mt-20">
+    <div className="min-h-screen mt-10">
       <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center">
         {/* left */}
-        <div className="flex-1 mx-3">
+        <div className="flex-1 mx-5">
           <div className="flex">
             <img
               src={images.trBlogLogo}
               alt="logo"
-              className="w-[140px] h-[150px] mx-auto"
+              className="w-[100px] h-[120px] mx-auto"
             />
           </div>
           <p className="my-3 mx-1">
@@ -70,7 +71,7 @@ const SignIn = () => {
           </p>
         </div>
         {/* right */}
-        <div className="flex-1 mx-3">
+        <div className="flex-1 mx-5">
           {successMessage && (
             <Alert className="mt-5" color="success">
               {successMessage}
@@ -125,6 +126,7 @@ const SignIn = () => {
           )}
         </div>
       </div>
+      <CallToAction />
     </div>
   );
 };

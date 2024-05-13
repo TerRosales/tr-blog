@@ -75,12 +75,12 @@ const DashPosts = () => {
   };
 
   return (
-    <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-teal-950 scrollbar-thumb-teal-950 dark:scrollbar-track-teal-900 dark:scrollbar-thumb-teal-950">
+    <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar dark:scrollbar-track-teal-900 dark:scrollbar-thumb-teal-950">
       {currentUser.isAdmin && userPosts.length > 0 ? (
         <>
           <Table
             hoverable
-            className="text-black hover:text-white shadow-md bg-white dark:border-teal-950 dark:bg-gradient-to-bl from-teal-900 to-black"
+            className="text-black shadow-md dark:border-teal-950"
           >
             <Table.Head>
               <Table.HeadCell>Date Updated</Table.HeadCell>
@@ -94,7 +94,7 @@ const DashPosts = () => {
             </Table.Head>
             {userPosts.map((post) => (
               <Table.Body key={post._id} className="divide-y">
-                <Table.Row className="bg-white dark:border-teal-200 dark:bg-gradient-to-bl to-black from-teal-900">
+                <Table.Row className="dark:border-teal-200 dark:bg-gradient-to-bl to-black from-teal-900">
                   <Table.Cell>
                     {new Date(post.updatedAt).toLocaleDateString()}
                   </Table.Cell>
@@ -169,7 +169,7 @@ const DashPosts = () => {
             </h3>
             <div className="flex justify-center gap-4">
               <Button color="failure" onClick={handleDeletePost}>
-                Confirm deletion
+                Confirm
               </Button>
               <Button color="gray" onClick={() => setShowModal(false)}>
                 Cancel
