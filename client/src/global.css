@@ -53,5 +53,5 @@ body {
 }
 
 .active {
-  @apply rounded-xl bg-opacity-20 bg-gradient-to-b from-slate-700 to-teal-700 text-[20px] transition-all font-bold text-white -translate-y-0.5 !important;
+  @apply rounded-xl bg-opacity-20 bg-gradient-to-b from-slate-800 to-teal-700 text-[15px] transition-all font-bold text-white scale-75 !important;
 }

@@ -77,7 +77,7 @@ const Header = () => {
       </div>
       <Navbar.Collapse>
         <Button
-          className="mb-3 self-center w-12 h-10 button-gradient"
+          className="self-center w-12 h-10 button-gradient"
           pill
           onClick={() => {
             dispatch(toggleTheme());

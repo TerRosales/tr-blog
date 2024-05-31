@@ -77,7 +77,7 @@ const Comment = ({ comment, onLike, onEdit, onDelete }) => {
             />
             <div className="flex justify-end gap-2 text-xs">
               <Button
-                className="text-teal-700 dark:text-white"
+                className="text-white"
                 type="button"
                 size="sm"
                 gradientDuoTone="greenToBlue"
@@ -86,7 +86,7 @@ const Comment = ({ comment, onLike, onEdit, onDelete }) => {
                 Save
               </Button>
               <Button
-                className="text-teal-700 dark:text-white"
+                className="text-white"
                 type="button"
                 size="sm"
                 gradientDuoTone="greenToBlue"
