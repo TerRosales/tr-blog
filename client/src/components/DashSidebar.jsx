@@ -6,12 +6,12 @@ import {
   HiDocumentText,
   HiOutlineUserGroup,
   HiAnnotation,
+  HiChartPie,
 } from "react-icons/hi";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, Link } from "react-router-dom";
 import { signoutSuccess } from "../redux/user/userSlice.js";
-import { current } from "@reduxjs/toolkit";
 
 const DashSidebar = () => {
   const userState = useSelector((state) => state.user);
@@ -56,18 +56,26 @@ const DashSidebar = () => {
             </Sidebar.Item>
           </Link>
           {currentUser.isAdmin && (
-            <Link to="/dashboard?tab=posts">
-              <Sidebar.Item
-                active={tab === "posts"}
-                icon={HiDocumentText}
-                as="div"
-              >
-                Posts
-              </Sidebar.Item>
-            </Link>
-          )}
-          {currentUser.isAdmin && (
             <>
+              <Link to="/dashboard?tab=dash">
+                <Sidebar.Item
+                  active={tab === "dash"}
+                  icon={HiChartPie}
+                  as="div"
+                >
+                  Dashboard
+                </Sidebar.Item>
+              </Link>
+              <Link to="/dashboard?tab=posts">
+                <Sidebar.Item
+                  active={tab === "posts"}
+                  icon={HiDocumentText}
+                  as="div"
+                >
+                  Posts
+                </Sidebar.Item>
+              </Link>
+
               <Link to="/dashboard?tab=comments">
                 <Sidebar.Item
                   active={tab === "comments"}

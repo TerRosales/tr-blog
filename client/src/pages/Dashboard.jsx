@@ -17,7 +17,7 @@ const Dashboard = () => {
     }
   }, [location.search]);
   return (
-    <div className="min-h-screen flex flex-col md:flex-row">
+    <div className="teal-gradient min-h-screen flex flex-col md:flex-row">
       <div>
         {/* Sidebar */}
         <DashSidebar />

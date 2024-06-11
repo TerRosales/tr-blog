@@ -1,17 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "./Logo";
 import { Navbar, TextInput, Button, Dropdown, Avatar } from "flowbite-react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon, FaSun } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "../redux/theme/themeSlice";
 import { signoutSuccess } from "../redux/user/userSlice.js";
+
 const Header = () => {
   const path = useLocation().pathname;
+  const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
+  const [searchTerm, setSearchTerm] = useState("");
+  console.log(searchTerm);
   const { theme } = useSelector((state) => state.theme);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const searchTermFromUrl = urlParams.get("searchTerm");
+    if (searchTermFromUrl) {
+      setSearchTerm(searchTermFromUrl);
+    }
+  }, [location.search]);
 
   const handleSignout = async () => {
     try {
@@ -26,15 +39,25 @@ const Header = () => {
       console.log(error.message);
     }
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set("searchTerm", searchTerm);
+    const searchQuery = urlParams.toString();
+    navigate(`/search?${searchQuery}`);
+  };
   return (
     <Navbar className="border-b-2 h-22">
       <Logo />
-      <form>
+      <form onSubmit={handleSubmit}>
         <TextInput
           className="hidden lg:inline button-gradient"
           type="text"
           placeholder="Search..."
           rightIcon={AiOutlineSearch}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </form>
       <Button className="button-gradient w-12 h-10 pill lg:inline">
@@ -57,6 +80,15 @@ const Header = () => {
                 {currentUser.email}
               </span>
             </Dropdown.Header>
+            <Button
+              className="self-center w-10 h-8 button-gradient"
+              pill
+              onClick={() => {
+                dispatch(toggleTheme());
+              }}
+            >
+              {theme === "light" ? <FaSun /> : <FaMoon />}
+            </Button>
             <Link to="/dashboard?tab=profile">
               <Dropdown.Item>Profile</Dropdown.Item>
             </Link>
@@ -76,32 +108,23 @@ const Header = () => {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Button
-          className="self-center w-12 h-10 button-gradient"
-          pill
-          onClick={() => {
-            dispatch(toggleTheme());
-          }}
-        >
-          {theme === "light" ? <FaSun /> : <FaMoon />}
-        </Button>
         <Navbar.Link
-          className={`lg:p-4 ${path === "/" ? "active" : ""}`}
+          className={`w-18 lg:p-4 ${path === "/" ? "active" : ""}`}
           as={"div"}
         >
           <Link to="/">Home</Link>
         </Navbar.Link>
         <Navbar.Link
-          className={`lg:p-4 ${path === "/goals" ? "active" : ""}`}
+          className={`w-18 lg:p-4 ${path === "/builds" ? "active" : ""}`}
           as={"div"}
         >
-          <Link to="/goals">Goals</Link>
+          <Link to="/builds">Builds</Link>
         </Navbar.Link>
         <Navbar.Link
-          className={`lg:p-4 ${path === "/hobbies" ? "active" : ""}`}
+          className={`w-18 lg:p-4 ${path === "/blog" ? "active" : ""}`}
           as={"div"}
         >
-          <Link to="/hobbies">Hobbies</Link>
+          <Link to="/blog">Blog</Link>
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>

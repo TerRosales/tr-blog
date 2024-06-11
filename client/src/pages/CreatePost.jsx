@@ -12,6 +12,7 @@ import { TextInput, Select, FileInput, Button, Alert } from "flowbite-react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useNavigate } from "react-router-dom";
+import "../global.css";
 
 const CreatePost = () => {
   const [file, setFile] = useState(null);
@@ -83,7 +84,7 @@ const CreatePost = () => {
     }
   };
   return (
-    <div className="p3 max-w-3xl mx-auto min-h-screen4">
+    <div className="p3 max-w-3xl mx-auto min-h-screen ">
       <h1 className="text-center text-3xl my-7 font-semibold">Create a post</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
@@ -103,12 +104,10 @@ const CreatePost = () => {
             }
           >
             <option value="uncategorized">Select your category</option>
-            <option value="category-1">Category 1</option>
-            <option value="category-2">Category 2</option>
-            <option value="category-3">Category 3</option>
-            <option value="category-4">Category 4</option>
-            <option value="category-5">Category 5</option>
-            <option value="category-6">Category 6</option>
+            <option value="family">Family</option>
+            <option value="programming">Programming</option>
+            <option value="learning">Learning</option>
+            <option value="hobbies">Hobbies</option>
           </Select>
         </div>
         <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">

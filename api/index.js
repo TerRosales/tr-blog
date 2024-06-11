@@ -9,6 +9,8 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 
 dotenv.config();
+// Server Setup
+const app = express();
 
 // Database Setup
 mongoose
@@ -19,9 +21,6 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-
-// Server Setup
-const app = express();
 
 app.use(express.json()); //this is telling Express to use the express.json() middleware for all incoming requests, enabling automatic parsing of JSON request bodies.
 app.use(cookieParser());

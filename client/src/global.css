@@ -14,6 +14,10 @@
   @apply text-white bg-gradient-to-b from-slate-900 to-teal-700 mx-2;
 }
 
+.teal-gradient {
+  @apply bg-gradient-to-t dark:from-teal-950  from-teal-200;
+}
+
 body {
   height: 100vh;
 }
