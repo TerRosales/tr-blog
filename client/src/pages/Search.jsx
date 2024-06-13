@@ -62,7 +62,8 @@ const Search = () => {
       const order = e.target.value || "desc";
       setSidebarData({
         ...sidebarData,
-        sort: order,
+        sort: order, // check post.controller.js --
+        //const sortDirection = req.query.sort === "asc" ? 1 :  -1; (the req.query.sort was supposed to be req.query.order in the post.controller.js file but "order" wouldnt work for now we can go with "sort")
       });
     }
     if (e.target.id === "category") {
