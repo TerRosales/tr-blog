@@ -81,7 +81,7 @@ const Header = () => {
               </span>
             </Dropdown.Header>
             <Button
-              className="self-center w-10 h-8 button-gradient"
+              className="w-10 h-8 button-gradient"
               pill
               onClick={() => {
                 dispatch(toggleTheme());
@@ -115,16 +115,16 @@ const Header = () => {
           <Link to="/">Home</Link>
         </Navbar.Link>
         <Navbar.Link
-          className={`w-18 lg:p-4 ${path === "/builds" ? "active" : ""}`}
+          className={`w-18 lg:p-4 ${path === "/search" ? "active" : ""}`}
           as={"div"}
         >
-          <Link to="/builds">Builds</Link>
+          <Link to="/about">About</Link>
         </Navbar.Link>
         <Navbar.Link
-          className={`w-18 lg:p-4 ${path === "/blog" ? "active" : ""}`}
+          className={`w-18 lg:p-4 ${path === "/projects" ? "active" : ""}`}
           as={"div"}
         >
-          <Link to="/blog">Blog</Link>
+          <Link to="/projects">Projects</Link>
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>

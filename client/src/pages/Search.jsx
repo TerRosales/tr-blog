@@ -11,7 +11,6 @@ const Search = () => {
     sort: "desc",
     category: "uncategorized",
   });
-  console.log(sidebarData);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showMore, setShowMore] = useState(false);
@@ -98,7 +97,7 @@ const Search = () => {
     if (res.ok) {
       const data = await res.json();
       setPosts([...posts, ...data.posts]);
-      if (data.posts.length === 5) {
+      if (data.posts.length === 9) {
         setShowMore(true);
       } else {
         setShowMore(false);
@@ -147,11 +146,11 @@ const Search = () => {
           </Button>
         </form>
       </section>
-      <section className="w-full">
+      <section className="w-full]">
         <h1 className="text-3xl font-semibold sm:border-b border-gray-500 dark:border-teal-700 p-3 mt-7">
           Posts Results
         </h1>
-        <div className="p-7 flex flex-wrap gap-4">
+        <div className="p-10 flex flex-wrap gap-4">
           {!loading && posts.length === 0 && (
             <p className="text-xl text-gray-500">No posts found.</p>
           )}

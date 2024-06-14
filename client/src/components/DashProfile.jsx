@@ -161,7 +161,7 @@ const DashProfile = () => {
   };
   return (
     <div className="max-w-lg mx-auto p-3 w-full">
-      <h1 className="my-7 text-center font-semibold text-3xl text-[white]">
+      <h1 className="my-7 text-center font-semibold text-3xl text-gray-500">
         Profile
       </h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
@@ -175,15 +175,15 @@ const DashProfile = () => {
           />
           {isHovered && (
             <>
-              <span className="cursor-pointer absolute z-10 mt-16 inset-0 flex flex-col  items-center justify-center text-gray-300 font-semibold opacity-[0.86]">
+              <span className="cursor-pointer absolute z-10 mt-14 inset-0 flex flex-col  items-center justify-center text-gray-300 font-semibold opacity-[0.86] dark:text-white ">
+                <FaCamera className="cursor-pointer absolute mt-20 w-12 h-12 justify-center items-center text-gray-300 opacity-[0.86] left-1/2 -translate-x-1/2" />
                 Upload Profile Picture
               </span>
-              <FaCamera className="cursor-pointer absolute mt-20 w-12 h-12 justify-center items-center text-gray-300 opacity-[0.86] left-1/2 -translate-x-1/2" />
             </>
           )}
         </div>
         <div
-          className="relative w-32 h-32 self-center cursor-pointer shadow-md everflow-hidden rounded-full hover:bg-white"
+          className="relative w-32 h-32 self-center cursor-pointer shadow-md everflow-hidden rounded-full hover:bg-white hover:dark:bg-teal-950"
           onClick={() => filePickerRef.current.click()}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}

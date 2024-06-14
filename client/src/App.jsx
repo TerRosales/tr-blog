@@ -5,11 +5,10 @@ import "./global.css";
 import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
-import Builds from "./pages/Builds";
+import Projects from "./pages/Projects";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Header from "./components/Header";
-import Blog from "./pages/Blog";
 import FooterComp from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
 import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute";
@@ -24,6 +23,8 @@ import Courses from "./pages/footerComponents/Courses";
 import PrivacyPolicy from "./pages/footerComponents/PrivacyPolicy";
 import TermsConditions from "./pages/footerComponents/TermsConditions";
 import Search from "./pages/Search";
+// weekend of 6/10 goals
+// finish about, project, books, courses, privacy policy, terms and conditions
 
 function App() {
   return (
@@ -49,8 +50,7 @@ function App() {
           <Route path="/create-post" element={<CreatePost />} />
           <Route path="/update-post/:postId" element={<UpdatePost />} />
         </Route>
-        <Route path="/Blog" element={<Blog />} />
-        <Route path="/builds" element={<Builds />} />
+        <Route path="/projects" element={<Projects />} />
         <Route path="/post/:postSlug" element={<PostPage />} />
       </Routes>
       <FooterComp />
