@@ -59,3 +59,12 @@ body {
 .active {
   @apply rounded-xl bg-opacity-20 bg-gradient-to-b from-slate-800 to-teal-700 text-[15px] transition-all font-bold text-white scale-75 !important;
 }
+
+@media (max-width: 350px) {
+}
+@media (max-width: 768px) {
+}
+@media (max-width: 1200px) {
+}
+@media (max-width: 1440px) {
+}

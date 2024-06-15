@@ -24,7 +24,7 @@ const Home = () => {
         <h1 className="text-red-400 text-4xl font-bold lg:text-6xl">
           Welcome to my Blog
         </h1>
-        <p className="text-gray-500 dark:text-neutral-300 text-xs">
+        <p className="text-gray-600 dark:text-white text-lg">
           Thank you! for taking your time to come and check the latest on what
           topics have I been tackling as a Software Developer, in addition to
           developer topics, I will also be sharing some editing thoughts on the

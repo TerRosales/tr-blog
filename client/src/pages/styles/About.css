@@ -1,0 +1,21 @@
+.aboutInner {
+}
+
+.aboutImg {
+  @apply w-[80%] h-[80%];
+}
+
+@media (max-width: 350px) {
+  .aboutInner {
+    @apply p-0;
+  }
+}
+@media (max-width: 768px) {
+  .aboutImg {
+    @apply w-[100%] h-[100%];
+  }
+}
+@media (max-width: 1200px) {
+}
+@media (max-width: 1440px) {
+}
