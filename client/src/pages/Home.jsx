@@ -3,8 +3,11 @@ import CallToAction from "../components/CallToAction";
 import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
 import PostCard from "../components/PostCard";
+import { motion } from "framer-motion";
 import "../global.css";
 import "./styles/Home.css";
+import { homeTextData } from "./textData";
+import splitStringUsingRegex from "../utils/splitStringUsingRegex";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -17,19 +20,46 @@ const Home = () => {
     fetchPosts();
   }, []);
 
+  const charVariants = {
+    hidden: { opacity: 0 },
+    reveal: { opacity: 1 },
+  };
+
+  const headingChars = splitStringUsingRegex(homeTextData.homeHeader);
+  const introChars = splitStringUsingRegex(homeTextData.homeIntro);
+
   return (
-    <div className="">
+    <div>
       {/* intro */}
       <section className="flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto">
-        <h1 className="text-red-400 text-4xl font-bold lg:text-6xl">
-          Welcome to my Blog
-        </h1>
-        <p className="text-gray-600 dark:text-white text-lg">
-          Thank you! for taking your time to come and check the latest on what
-          topics have I been tackling as a Software Developer, in addition to
-          developer topics, I will also be sharing some editing thoughts on the
-          software that I use while I am building my projects
-        </p>
+        <motion.h1
+          className="text-red-400 text-4xl font-bold lg:text-6xl"
+          initial="hidden"
+          whileInView="reveal"
+          viewport={{ once: true }}
+          variants={charVariants}
+          transition={{ duration: 0.5 }}
+        >
+          {headingChars.map((char, index) => (
+            <motion.span key={index} variants={charVariants}>
+              {char}
+            </motion.span>
+          ))}
+        </motion.h1>
+        <motion.p
+          className="text-xl"
+          initial="hidden"
+          whileInView="reveal"
+          viewport={{ once: true }}
+          variants={charVariants}
+          transition={{ staggerChildren: 0.02 }}
+        >
+          {introChars.map((char, index) => (
+            <motion.span key={index} variants={charVariants}>
+              {char}
+            </motion.span>
+          ))}
+        </motion.p>
         <section>
           <Button gradientDuoTone="greenToBlue" outline>
             <Link

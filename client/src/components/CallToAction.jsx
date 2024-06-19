@@ -1,9 +1,23 @@
+import { useState, useEffect } from "react";
 import images from "../images.js";
 import { Button } from "flowbite-react";
+import { motion } from "framer-motion";
 
 const CallToAction = () => {
+  const charVariants = {
+    hidden: { opacity: 0 },
+    reveal: { opacity: 1 },
+  };
+
   return (
-    <div className="max-w-4xl mx-auto p-3 flex flex-col sm:flex-row border border-teal-500 mt-5 mb-10 justify-center items-center text-center">
+    <motion.div
+      initial="hidden"
+      whileInView="reveal"
+      viewport={{ once: true }}
+      variants={charVariants}
+      transition={{ duration: 0.5 }}
+      className="max-w-4xl mx-auto p-3 flex flex-col sm:flex-row border border-teal-500 mt-5 mb-10 justify-center items-center text-center"
+    >
       <div className="flex-1 justify-center flex flex-col px-10">
         <h2 className="text-2xl text-black dark:text-[#3df] font-semibold">
           Learn, Build and Share
@@ -29,7 +43,7 @@ const CallToAction = () => {
       <div>
         <img className="flex-1" src={images.CTA} alt="test img" />
       </div>
-    </div>
+    </motion.div>
   );
 };
 
