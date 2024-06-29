@@ -115,7 +115,7 @@ const Header = () => {
           <Link to="/">Home</Link>
         </Navbar.Link>
         <Navbar.Link
-          className={`w-18 lg:p-4 ${path === "/search" ? "active" : ""}`}
+          className={`w-18 lg:p-4 ${path === "/about" ? "active" : ""}`}
           as={"div"}
         >
           <Link to="/about">About</Link>

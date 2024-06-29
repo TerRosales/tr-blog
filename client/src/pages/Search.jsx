@@ -147,7 +147,7 @@ const Search = () => {
         </form>
       </section>
       <section className="w-full]">
-        <h1 className="text-3xl font-semibold sm:border-b border-gray-500 dark:border-teal-700 p-3 mt-7">
+        <h1 className="text-3xl font-semibold sm:border-b border-gray-500 dark:border-teal-700 p-3 mt-7 text-neutral-700 dark:text-gray-500">
           Posts Results
         </h1>
         <div className="p-10 flex flex-wrap gap-4">
