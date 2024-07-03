@@ -1,5 +1,5 @@
 import React from "react";
-import { Accordion, List, ListItem } from "flowbite-react";
+import { Accordion, List, ListItem, Button } from "flowbite-react";
 import { HiCheckCircle } from "react-icons/hi";//need to fix this problem of icons not loading when hooked up.
 
 
@@ -14,7 +14,7 @@ const TermsConditions = () => {
       <Accordion>
         <Accordion.Panel>
           <Accordion.Title>1. Introduction</Accordion.Title>
-          <Accordion.Content>Welcome to [Your Blog Name]. By accessing or using our website, you agree to comply with and be bound by the following terms and conditions. If you do not agree with any part of these terms, you must not use our website.</Accordion.Content>
+          <Accordion.Content>Welcome to Tr-Blog - Terrence Rosales Blog. By accessing or using our website, you agree to comply with and be bound by the following terms and conditions. If you do not agree with any part of these terms, you must not use our website.</Accordion.Content>
         </Accordion.Panel>
         <Accordion.Panel>
           <Accordion.Title>2. Purpose</Accordion.Title>
@@ -58,14 +58,26 @@ const TermsConditions = () => {
         </Accordion.Panel>
         <Accordion.Panel>
           <Accordion.Title>9. Governing Law</Accordion.Title>
-          <Accordion.Content>These terms and conditions are governed by and construed in accordance with the laws of [Your Country/State], and you submit to the non-exclusive jurisdiction of the courts located in [Your Country/State] for the resolution of any disputes.</Accordion.Content>
+          <Accordion.Content>These terms and conditions are governed by and construed in accordance with the laws of The United States, and you submit to the non-exclusive jurisdiction of the courts located in The United States for the resolution of any disputes.</Accordion.Content>
         </Accordion.Panel>
         <Accordion.Panel>
           <Accordion.Title>10. Contact Us</Accordion.Title>
-          <Accordion.Content>If you have any questions about these terms and conditions, please contact us at [Your Contact Information].</Accordion.Content>
+          <Accordion.Content>If you have any questions about these terms and conditions, please contact us at rtin27411@gmail.com.</Accordion.Content>
         </Accordion.Panel>
       </Accordion>
       </section>
+      <form action="" className="max-w-6xl w-[50%] flex flex-col gap-5 px-10 mb-10 mx-auto">
+        <label for="fullname">Enter Full Name</label>
+        <input type="text" placeholder="Enter Full Name" id="fullname"/>
+
+        <section className="flex">
+        <input type="checkbox" className=""/>
+        <span className="mb-4">&nbsp;I Agree to the Terms & Conditions</span>
+        </section>
+        <Button gradientDuoTone="greenToBlue">
+          Confirm Agreements
+        </Button>
+      </form>
     </div>
   );
 };
