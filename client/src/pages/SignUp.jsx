@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
+import images from "../images";
 import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
 import OAuth from "../components/OAuth";
@@ -52,16 +53,13 @@ const SignUp = () => {
       <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center">
         {/* left */}
         <div className="flex-1 mx-3">
-          <Link to="/" className="text-[30px] font-bold dark:text-white">
-            Pocket&nbsp;
-            <span className="text-teal-500 text-[30px]">&#123;</span>&nbsp;
-            <span className="px-2 py-1 text-[32px] rounded-lg text-white font-bold bg-gradient-to-b from-slate-900 to-teal-700 ">
-              {" "}
-              thought:
-            </span>
-            &nbsp;
-            <span className="text-teal-500 text-[30px]">&#125;</span>
-          </Link>
+          <div className="flex">
+            <img
+              src={images.trBlogLogo}
+              alt="logo"
+              className="w-[100px] h-[120px] mx-auto"
+            />
+          </div>
           <p className="my-3">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
             optio deleniti possimus voluptatum? Ipsa itaque tempore ut quis,

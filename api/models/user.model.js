@@ -25,6 +25,18 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+    isTermsAccepted: {
+      type: Boolean,
+      default: false,
+    },
+    isInNewsLetter: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
